@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>现代伊纳特语词典</title>
+
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+}
+
+#search{
+    width:100%;
+    padding:12px;
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.letters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:20px;
+}
+
+.letter{
+    padding:6px 10px;
+    border:1px solid #ccc;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+.letter:hover{
+    background:#eee;
+}
+
+.word{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    cursor:pointer;
+}
+
+.word:hover{
+    background:#f5f5f5;
+}
+
+#detail{
+    margin-top:30px;
+    padding:20px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    display:none;
+}
+
+.wordTitle{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.pos{
+    color:gray;
+    margin-top:5px;
+}
+
+.section{
+    margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>现代伊纳特语词典</h1>
+
+<input
+id="search"
+type="text"
+placeholder="搜索词汇..."
+onkeyup="searchWord()">
+
+<div class="letters" id="letters"></div>
+
+<div id="wordList"></div>
+
+<div id="detail"></div>
+
+<script src="dictionary.js"></script>
+
+<script>
+
+words.sort((a,b)=>
+a.word.localeCompare(b.word)
+);
+
+const alphabet =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+const lettersDiv =
+document.getElementById("letters");
+
+alphabet.forEach(letter=>{
+
+const btn =
+document.createElement("div");
+
+btn.className="letter";
+
+btn.innerText=letter;
+
+btn.onclick=()=>filterLetter(letter);
+
+lettersDiv.appendChild(btn);
+
+});
+
+function render(list){
+
+const wordList =
+document.getElementById("wordList");
+
+wordList.innerHTML="";
+
+list.forEach(item=>{
+
+wordList.innerHTML += `
+<div
+class="word"
+onclick="showWord('${item.word}')">
+${item.word}
+</div>
+`;
+
+});
+
+}
+
+function searchWord(){
+
+const keyword =
+document.getElementById("search")
+.value
+.toLowerCase();
+
+const result =
+words.filter(w=>
+w.word.toLowerCase()
+.includes(keyword)
+);
+
+render(result);
+
+}
+
+function filterLetter(letter){
+
+const result =
+words.filter(w=>
+w.word.charAt(0)
+.toUpperCase()===letter
+);
+
+render(result);
+
+}
+
+function showWord(word){
+
+const item =
+words.find(w=>w.word===word);
+
+const detail =
+document.getElementById("detail");
+
+detail.style.display="block";
+
+detail.innerHTML=`
+
+<div class="wordTitle">
+${item.word}
+</div>
+
+<div class="pos">
+${item.pos}
+</div>
+
+<div class="section">
+<b>释义</b><br>
+${item.meaning}
+</div>
+
+<div class="section">
+<b>词源</b><br>
+${item.etymology || "暂无"}
+</div>
+
+<div class="section">
+<b>例句</b><br>
+${item.example || "暂无"}
+</div>
+
+<div class="section">
+<b>派生词</b><br>
+${item.derived || "暂无"}
+</div>
+
+`;
+
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:"smooth"
+});
+
+}
+
+render(words);
+
+</script>
+
+</body>
+</html>
