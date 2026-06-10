@@ -1,0 +1,30 @@
+const words = [
+
+...(typeof A_WORDS !== "undefined" ? A_WORDS : []),
+...(typeof B_WORDS !== "undefined" ? B_WORDS : []),
+...(typeof C_WORDS !== "undefined" ? C_WORDS : []),
+...(typeof D_WORDS !== "undefined" ? D_WORDS : []),
+...(typeof E_WORDS !== "undefined" ? E_WORDS : []),
+...(typeof F_WORDS !== "undefined" ? F_WORDS : []),
+...(typeof G_WORDS !== "undefined" ? G_WORDS : []),
+...(typeof H_WORDS !== "undefined" ? H_WORDS : []),
+...(typeof I_WORDS !== "undefined" ? I_WORDS : []),
+...(typeof J_WORDS !== "undefined" ? J_WORDS : []),
+...(typeof K_WORDS !== "undefined" ? K_WORDS : []),
+...(typeof L_WORDS !== "undefined" ? L_WORDS : []),
+...(typeof M_WORDS !== "undefined" ? M_WORDS : []),
+...(typeof N_WORDS !== "undefined" ? N_WORDS : []),
+...(typeof O_WORDS !== "undefined" ? O_WORDS : []),
+...(typeof P_WORDS !== "undefined" ? P_WORDS : []),
+...(typeof Q_WORDS !== "undefined" ? Q_WORDS : []),
+...(typeof R_WORDS !== "undefined" ? R_WORDS : []),
+...(typeof S_WORDS !== "undefined" ? S_WORDS : []),
+...(typeof T_WORDS !== "undefined" ? T_WORDS : []),
+...(typeof U_WORDS !== "undefined" ? U_WORDS : []),
+...(typeof V_WORDS !== "undefined" ? V_WORDS : []),
+...(typeof W_WORDS !== "undefined" ? W_WORDS : []),
+...(typeof X_WORDS !== "undefined" ? X_WORDS : []),
+...(typeof Y_WORDS !== "undefined" ? Y_WORDS : []),
+...(typeof Z_WORDS !== "undefined" ? Z_WORDS : [])
+
+];
